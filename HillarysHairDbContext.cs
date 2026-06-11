@@ -3,11 +3,11 @@ using HillarysHairCare.Models;
 
 public class HillarysHairDbContext : DbContext
 {
-    public DbSet<Appointment> Checkouts { get; set; }
-    public DbSet<AppointmentService> Genres { get; set; }
-    public DbSet<Customer> Materials { get; set; }
-    public DbSet<Service> MaterialTypes { get; set; }
-    public DbSet<Stylist> Patrons { get; set; }
+    public DbSet<Appointment> Appointments { get; set; }
+    public DbSet<AppointmentService> AppointmentServices { get; set; }
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<Service> Services { get; set; }
+    public DbSet<Stylist> Stylists { get; set; }
 
     public HillarysHairDbContext(DbContextOptions<HillarysHairDbContext> context) : base(context)
     {
