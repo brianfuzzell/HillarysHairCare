@@ -11,4 +11,5 @@ public class Appointment
     public Stylist Stylist { get; set; }
     public DateTime? AppointmentTime { get; set; }
     public bool IsCancelled { get; set; }
+    public List<AppointmentService> AppointmentServices { get; set; }
 }

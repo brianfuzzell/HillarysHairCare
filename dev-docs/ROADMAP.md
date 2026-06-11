@@ -7,7 +7,7 @@ Generated from: dev-docs/PRD.md
 
 ## Steps
 
-- [ ] **Step 1: Fix model and DTO bugs (prerequisites)**
+- [x] **Step 1: Fix model and DTO bugs (prerequisites)**
   Three known issues in the current code must be resolved before any appointment endpoint can work correctly. Fixing them now avoids revisiting these files mid-feature.
 
   Changes:
