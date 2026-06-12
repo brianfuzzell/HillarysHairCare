@@ -57,6 +57,20 @@ app.MapPost("/api/stylists", (HillarysHairDbContext db, StylistDTO stylistDTO) =
     });
 });
 
+app.MapPut("/api/stylists/{id}/deactivate", (HillarysHairDbContext db, int id) =>
+{
+    var stylist = db.Stylists.Find(id);
+    if (stylist == null)
+    {
+        return Results.NotFound();
+    }
+
+    stylist.isActive = false;
+    db.SaveChanges();
+
+    return Results.NoContent();
+});
+
 app.MapGet("/api/services", (HillarysHairDbContext db) =>
 {
     return db.Services

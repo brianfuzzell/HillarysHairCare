@@ -57,7 +57,7 @@ Generated from: dev-docs/PRD.md
   - **Given** the app is running, **When** Hillary navigates to `/stylists`, **Then** all seeded stylists are displayed with a visible indicator for inactive stylists.
   - **Given** the stylists list is visible, **When** Hillary submits the add-stylist form, **Then** the new stylist appears as active in the list.
 
-- [ ] **Step 5: Deactivate a stylist (Issue #10)**
+- [x] **Step 5: Deactivate a stylist (Issue #10)**
   This step introduces the soft-deactivate pattern: a `PUT` endpoint that updates a flag rather than deleting a record. It also teaches PUT endpoints that return `204 No Content` with no request body.
 
   Changes:
