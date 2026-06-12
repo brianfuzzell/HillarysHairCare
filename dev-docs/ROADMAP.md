@@ -44,7 +44,7 @@ Generated from: dev-docs/PRD.md
   - **Given** the app is running, **When** Hillary navigates to `/services`, **Then** all seeded services are displayed.
   - **Given** the services list is visible, **When** Hillary submits the add-service form with a name, description, and price, **Then** the new service appears in the list without a page reload.
 
-- [ ] **Step 4: Stylists - view all and add new (Issues #8, #9)**
+- [x] **Step 4: Stylists - view all and add new (Issues #8, #9)**
   Stylists introduce the `isActive` field. This step adds the read/create pattern for stylists and surfaces the active/inactive distinction in the UI (which deactivation in Step 5 will build on).
 
   Changes:

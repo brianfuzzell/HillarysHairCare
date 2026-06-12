@@ -26,6 +26,37 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.MapGet("/api/stylists", (HillarysHairDbContext db) =>
+{
+    return db.Stylists
+        .Select(s => new StylistDTO
+        {
+            Id = s.Id,
+            Name = s.Name,
+            isActive = s.isActive
+        })
+        .ToList();
+});
+
+app.MapPost("/api/stylists", (HillarysHairDbContext db, StylistDTO stylistDTO) =>
+{
+    var stylist = new Stylist
+    {
+        Name = stylistDTO.Name,
+        isActive = true
+    };
+
+    db.Stylists.Add(stylist);
+    db.SaveChanges();
+
+    return Results.Created($"/api/stylists/{stylist.Id}", new StylistDTO
+    {
+        Id = stylist.Id,
+        Name = stylist.Name,
+        isActive = stylist.isActive
+    });
+});
+
 app.MapGet("/api/services", (HillarysHairDbContext db) =>
 {
     return db.Services
