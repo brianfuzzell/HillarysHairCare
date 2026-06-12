@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 import { createService, getServices } from "../data/services";
 
 export const AddServiceForm = ({ setServices }) => {
@@ -17,11 +18,33 @@ export const AddServiceForm = ({ setServices }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
-      <input value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
-      <input value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Price" type="number" />
-      <button type="submit">Add Service</button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3">
+        <Form.Label>Name</Form.Label>
+        <Form.Control
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Name"
+        />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Description"
+        />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Price</Form.Label>
+        <Form.Control
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          placeholder="Price"
+          type="number"
+        />
+      </Form.Group>
+      <Button type="submit">Add Service</Button>
+    </Form>
   );
 };
