@@ -1,4 +1,5 @@
 using HillarysHairCare.Models;
+using HillarysHairCare.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http.Json;
@@ -25,5 +26,38 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.MapGet("/api/services", (HillarysHairDbContext db) =>
+{
+    return db.Services
+        .Select(s => new ServiceDTO
+        {
+            Id = s.Id,
+            Name = s.Name,
+            Description = s.Description,
+            Price = s.Price
+        })
+        .ToList();
+});
+
+app.MapPost("/api/services", (HillarysHairDbContext db, ServiceDTO serviceDTO) =>
+{
+    var service = new Service
+    {
+        Name = serviceDTO.Name,
+        Description = serviceDTO.Description,
+        Price = serviceDTO.Price
+    };
+
+    db.Services.Add(service);
+    db.SaveChanges();
+
+    return Results.Created($"/api/services/{service.Id}", new ServiceDTO
+    {
+        Id = service.Id,
+        Name = service.Name,
+        Description = service.Description,
+        Price = service.Price
+    });
+});
 
 app.Run();
