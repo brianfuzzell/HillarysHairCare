@@ -18,7 +18,7 @@ Generated from: dev-docs/PRD.md
   **Acceptance Criteria:**
   - **Given** the three files are updated, **When** the project is built with `dotnet build`, **Then** it compiles with no errors or warnings about type mismatches.
 
-- [ ] **Step 2: Set up the React app shell**
+- [x] **Step 2: Set up the React app shell**
   Before building any UI, `App.jsx` needs routes and a nav bar so each feature has a place to land. This is the last infrastructure step before feature work begins.
 
   Changes:
