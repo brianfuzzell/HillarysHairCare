@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Table, Badge } from "react-bootstrap";
 import { getAppointments } from "../data/appointments";
 
@@ -20,6 +21,7 @@ export const AppointmentList = () => {
             <th>Date & Time</th>
             <th>Total Cost</th>
             <th>Status</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -42,6 +44,9 @@ export const AppointmentList = () => {
                 ) : (
                   <Badge bg="success">Active</Badge>
                 )}
+              </td>
+              <td>
+                <Link to={`/appointments/${a.id}`}>View</Link>
               </td>
             </tr>
           ))}

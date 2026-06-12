@@ -96,7 +96,7 @@ Generated from: dev-docs/PRD.md
   - **Given** the app is running, **When** Hillary navigates to `/appointments`, **Then** all seeded appointments are displayed with customer name, stylist name, date/time, and computed total cost.
   - **Given** an appointment is cancelled (from seed data), **When** it appears in the list, **Then** it is visually distinct from active appointments.
 
-- [ ] **Step 8: View appointment details (Issue #2)**
+- [x] **Step 8: View appointment details (Issue #2)**
   A single-record version of the appointments query. Same `Include` / `ThenInclude` chain, returns 404 if not found.
 
   Changes:
