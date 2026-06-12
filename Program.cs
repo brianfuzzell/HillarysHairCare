@@ -124,6 +124,80 @@ app.MapGet("/api/appointments/{id}", (HillarysHairDbContext db, int id) =>
     });
 });
 
+app.MapPost("/api/appointments", (HillarysHairDbContext db, NewAppointmentDTO dto) =>
+{
+    var stylist = db.Stylists.Find(dto.StylistId);
+    if (stylist == null || !stylist.isActive)
+    {
+        return Results.BadRequest("Stylist is not active or does not exist.");
+    }
+
+    var appointment = new Appointment
+    {
+        CustomerId = dto.CustomerId,
+        StylistId = dto.StylistId,
+        AppointmentTime = dto.AppointmentTime,
+        IsCancelled = false
+    };
+
+    db.Appointments.Add(appointment);
+    db.SaveChanges();
+
+    foreach (var serviceId in dto.ServiceIds)
+    {
+        db.AppointmentServices.Add(new AppointmentService
+        {
+            AppointmentId = appointment.Id,
+            ServiceId = serviceId
+        });
+    }
+    db.SaveChanges();
+
+    var created = db.Appointments
+        .Include(a => a.Customer)
+        .Include(a => a.Stylist)
+        .Include(a => a.AppointmentServices)
+            .ThenInclude(aps => aps.Service)
+        .First(a => a.Id == appointment.Id);
+
+    return Results.Created($"/api/appointments/{created.Id}", new AppointmentDTO
+    {
+        Id = created.Id,
+        CustomerId = created.CustomerId,
+        Customer = new CustomerDTO
+        {
+            Id = created.Customer.Id,
+            Name = created.Customer.Name,
+            Email = created.Customer.Email,
+            Phone = created.Customer.Phone
+        },
+        StylistId = created.StylistId,
+        Stylist = new StylistDTO
+        {
+            Id = created.Stylist.Id,
+            Name = created.Stylist.Name,
+            isActive = created.Stylist.isActive
+        },
+        AppointmentTime = created.AppointmentTime,
+        IsCancelled = created.IsCancelled,
+        AppointmentServices = created.AppointmentServices
+            .Select(aps => new AppointmentServiceDTO
+            {
+                Id = aps.Id,
+                AppointmentId = aps.AppointmentId,
+                ServiceId = aps.ServiceId,
+                Service = new ServiceDTO
+                {
+                    Id = aps.Service.Id,
+                    Name = aps.Service.Name,
+                    Description = aps.Service.Description,
+                    Price = aps.Service.Price
+                }
+            }).ToList(),
+        TotalCost = created.AppointmentServices.Sum(aps => aps.Service.Price)
+    });
+});
+
 app.MapGet("/api/stylists", (HillarysHairDbContext db) =>
 {
     return db.Stylists
