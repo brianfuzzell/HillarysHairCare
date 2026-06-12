@@ -31,7 +31,7 @@ Generated from: dev-docs/PRD.md
   **Acceptance Criteria:**
   - **Given** both the .NET backend and Vite dev server are running, **When** the user clicks each nav link, **Then** the URL changes and the correct placeholder renders without a full page reload.
 
-- [ ] **Step 3: Services - view all and add new (Issues #11, #12)**
+- [x] **Step 3: Services - view all and add new (Issues #11, #12)**
   Services are the simplest entity: no foreign keys, no soft-delete, and `ServiceDTO` is already correct. This step establishes the full-stack pattern (endpoint + data manager + component) before anything more complex.
 
   Changes:
