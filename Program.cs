@@ -72,6 +72,58 @@ app.MapGet("/api/appointments", (HillarysHairDbContext db) =>
         .ToList();
 });
 
+app.MapGet("/api/appointments/{id}", (HillarysHairDbContext db, int id) =>
+{
+    var appointment = db.Appointments
+        .Include(a => a.Customer)
+        .Include(a => a.Stylist)
+        .Include(a => a.AppointmentServices)
+            .ThenInclude(aps => aps.Service)
+        .FirstOrDefault(a => a.Id == id);
+
+    if (appointment == null)
+    {
+        return Results.NotFound();
+    }
+
+    return Results.Ok(new AppointmentDTO
+    {
+        Id = appointment.Id,
+        CustomerId = appointment.CustomerId,
+        Customer = new CustomerDTO
+        {
+            Id = appointment.Customer.Id,
+            Name = appointment.Customer.Name,
+            Email = appointment.Customer.Email,
+            Phone = appointment.Customer.Phone
+        },
+        StylistId = appointment.StylistId,
+        Stylist = new StylistDTO
+        {
+            Id = appointment.Stylist.Id,
+            Name = appointment.Stylist.Name,
+            isActive = appointment.Stylist.isActive
+        },
+        AppointmentTime = appointment.AppointmentTime,
+        IsCancelled = appointment.IsCancelled,
+        AppointmentServices = appointment.AppointmentServices
+            .Select(aps => new AppointmentServiceDTO
+            {
+                Id = aps.Id,
+                AppointmentId = aps.AppointmentId,
+                ServiceId = aps.ServiceId,
+                Service = new ServiceDTO
+                {
+                    Id = aps.Service.Id,
+                    Name = aps.Service.Name,
+                    Description = aps.Service.Description,
+                    Price = aps.Service.Price
+                }
+            }).ToList(),
+        TotalCost = appointment.AppointmentServices.Sum(aps => aps.Service.Price)
+    });
+});
+
 app.MapGet("/api/stylists", (HillarysHairDbContext db) =>
 {
     return db.Stylists
