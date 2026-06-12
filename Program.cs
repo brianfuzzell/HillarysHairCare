@@ -26,6 +26,52 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.MapGet("/api/appointments", (HillarysHairDbContext db) =>
+{
+    return db.Appointments
+        .Include(a => a.Customer)
+        .Include(a => a.Stylist)
+        .Include(a => a.AppointmentServices)
+            .ThenInclude(aps => aps.Service)
+        .Select(a => new AppointmentDTO
+        {
+            Id = a.Id,
+            CustomerId = a.CustomerId,
+            Customer = new CustomerDTO
+            {
+                Id = a.Customer.Id,
+                Name = a.Customer.Name,
+                Email = a.Customer.Email,
+                Phone = a.Customer.Phone
+            },
+            StylistId = a.StylistId,
+            Stylist = new StylistDTO
+            {
+                Id = a.Stylist.Id,
+                Name = a.Stylist.Name,
+                isActive = a.Stylist.isActive
+            },
+            AppointmentTime = a.AppointmentTime,
+            IsCancelled = a.IsCancelled,
+            AppointmentServices = a.AppointmentServices
+                .Select(aps => new AppointmentServiceDTO
+                {
+                    Id = aps.Id,
+                    AppointmentId = aps.AppointmentId,
+                    ServiceId = aps.ServiceId,
+                    Service = new ServiceDTO
+                    {
+                        Id = aps.Service.Id,
+                        Name = aps.Service.Name,
+                        Description = aps.Service.Description,
+                        Price = aps.Service.Price
+                    }
+                }).ToList(),
+            TotalCost = a.AppointmentServices.Sum(aps => aps.Service.Price)
+        })
+        .ToList();
+});
+
 app.MapGet("/api/stylists", (HillarysHairDbContext db) =>
 {
     return db.Stylists

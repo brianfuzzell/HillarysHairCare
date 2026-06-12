@@ -3,6 +3,7 @@ import { NavBar } from './components/NavBar'
 import { ServiceList } from './components/ServiceList'
 import { StylistList } from './components/StylistList'
 import { CustomerList } from './components/CustomerList'
+import { AppointmentList } from './components/AppointmentList'
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<p>Coming soon</p>} />
-        <Route path="/appointments" element={<p>Coming soon</p>} />
+        <Route path="/appointments" element={<AppointmentList />} />
         <Route path="/customers" element={<CustomerList />} />
         <Route path="/stylists" element={<StylistList />} />
         <Route path="/services" element={<ServiceList />} />

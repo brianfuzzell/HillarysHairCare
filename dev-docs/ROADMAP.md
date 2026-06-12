@@ -82,7 +82,7 @@ Generated from: dev-docs/PRD.md
   - **Given** the app is running, **When** Hillary navigates to `/customers`, **Then** all seeded customers are displayed.
   - **Given** the customers list is visible, **When** Hillary submits the add-customer form, **Then** the new customer appears in the list.
 
-- [ ] **Step 7: View all appointments (Issue #1)**
+- [x] **Step 7: View all appointments (Issue #1)**
   This is the first endpoint that uses `Include` / `ThenInclude` to load related data and projects everything into a nested DTO. It requires the fixes from Step 1.
 
   The query must: `Include` Customer, `Include` Stylist, `Include` AppointmentServices then `ThenInclude` Service, and project into `AppointmentDTO` (including a computed `TotalCost` from `AppointmentServices.Sum(s => s.Service.Price)`).
