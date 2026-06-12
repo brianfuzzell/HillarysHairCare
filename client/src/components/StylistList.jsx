@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Badge } from "react-bootstrap";
-import { getStylists } from "../data/stylists";
+import { Badge, Button } from "react-bootstrap";
+import { getStylists, deactivateStylist } from "../data/stylists";
 import { AddStylistForm } from "./AddStylistForm";
 
 export const StylistList = () => {
@@ -9,6 +9,12 @@ export const StylistList = () => {
   useEffect(() => {
     getStylists().then(setStylists);
   }, []);
+
+  const handleDeactivate = (id) => {
+    deactivateStylist(id).then(() => {
+      getStylists().then(setStylists);
+    });
+  };
 
   return (
     <div>
@@ -22,6 +28,16 @@ export const StylistList = () => {
               <Badge bg="success">Active</Badge>
             ) : (
               <Badge bg="secondary">Inactive</Badge>
+            )}
+            {s.isActive && (
+              <Button
+                variant="outline-danger"
+                size="sm"
+                className="ms-2"
+                onClick={() => handleDeactivate(s.id)}
+              >
+                Deactivate
+              </Button>
             )}
           </li>
         ))}
