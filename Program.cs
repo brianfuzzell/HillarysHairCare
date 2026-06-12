@@ -105,4 +105,38 @@ app.MapPost("/api/services", (HillarysHairDbContext db, ServiceDTO serviceDTO) =
     });
 });
 
+app.MapGet("/api/customers", (HillarysHairDbContext db) =>
+{
+    return db.Customers
+        .Select(c => new CustomerDTO
+        {
+            Id = c.Id,
+            Name = c.Name,
+            Email = c.Email,
+            Phone = c.Phone
+        })
+        .ToList();
+});
+
+app.MapPost("/api/customers", (HillarysHairDbContext db, CustomerDTO customerDTO) =>
+{
+    var customer = new Customer
+    {
+        Name = customerDTO.Name,
+        Email = customerDTO.Email,
+        Phone = customerDTO.Phone
+    };
+
+    db.Customers.Add(customer);
+    db.SaveChanges();
+
+    return Results.Created($"/api/customers/{customer.Id}", new CustomerDTO
+    {
+        Id = customer.Id,
+        Name = customer.Name,
+        Email = customer.Email,
+        Phone = customer.Phone
+    });
+});
+
 app.Run();

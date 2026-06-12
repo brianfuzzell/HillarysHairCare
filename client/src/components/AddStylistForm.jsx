@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 import { createStylist, getStylists } from "../data/stylists";
 
 export const AddStylistForm = ({ setStylists }) => {
@@ -13,13 +14,16 @@ export const AddStylistForm = ({ setStylists }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Stylist name"
-      />
-      <button type="submit">Add Stylist</button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3">
+        <Form.Label>Name</Form.Label>
+        <Form.Control
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Stylist name"
+        />
+      </Form.Group>
+      <Button type="submit">Add Stylist</Button>
+    </Form>
   );
 };

@@ -69,7 +69,7 @@ Generated from: dev-docs/PRD.md
   - **Given** an active stylist is visible in the list, **When** Hillary clicks "Deactivate" for that stylist, **Then** the stylist is immediately shown as inactive in the UI.
   - **Given** a stylist is deactivated, **When** the page is refreshed, **Then** the stylist still appears in the list but remains marked as inactive.
 
-- [ ] **Step 6: Customers - view all and add new (Issues #6, #7)**
+- [x] **Step 6: Customers - view all and add new (Issues #6, #7)**
   Customers follow the same pattern as services and stylists. No foreign keys, no soft-delete. After this step, all three dropdown data sources (customers, active stylists, services) are available for the appointment creation form in Step 9.
 
   Changes:
