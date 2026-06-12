@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Table, Badge } from "react-bootstrap";
+import { Table, Badge, Button } from "react-bootstrap";
 import { getAppointments } from "../data/appointments";
 
 export const AppointmentList = () => {
@@ -12,7 +12,12 @@ export const AppointmentList = () => {
 
   return (
     <div>
-      <h2>Appointments</h2>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h2>Appointments</h2>
+        <Button as={Link} to="/appointments/new" variant="primary">
+          New Appointment
+        </Button>
+      </div>
       <Table striped bordered hover>
         <thead>
           <tr>
