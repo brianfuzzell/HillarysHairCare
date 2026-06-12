@@ -11,4 +11,6 @@ public class AppointmentDTO
     public StylistDTO Stylist { get; set; }
     public DateTime? AppointmentTime { get; set; }
     public bool IsCancelled { get; set; }
+    public List<AppointmentServiceDTO> AppointmentServices { get; set; }
+    public decimal TotalCost { get; set; }
 }
