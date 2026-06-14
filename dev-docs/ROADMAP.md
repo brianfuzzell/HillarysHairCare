@@ -120,7 +120,7 @@ Generated from: dev-docs/PRD.md
   - **Given** the create-appointment form is open, **When** Hillary selects an active stylist, a customer, a date/time, and submits, **Then** a new appointment is created and she is redirected to the detail view for that appointment.
   - **Given** Hillary selects a stylist, **When** that stylist is inactive, **Then** that stylist does not appear in the dropdown at all (filtered on the frontend).
 
-- [ ] **Step 10: Cancel an appointment (Issue #4)**
+- [x] **Step 10: Cancel an appointment (Issue #4)**
   Soft-cancel pattern: mirrors the deactivate-stylist endpoint from Step 5 but for appointments. Sets `IsCancelled = true`.
 
   Changes:
