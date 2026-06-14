@@ -212,6 +212,37 @@ app.MapPut("/api/appointments/{id}/cancel", (HillarysHairDbContext db, int id) =
     return Results.NoContent();
 });
 
+app.MapPut("/api/appointments/{id}/services", (HillarysHairDbContext db, int id, List<int> serviceIds) =>
+{
+    var appointment = db.Appointments.Find(id);
+    if (appointment == null)
+    {
+        return Results.NotFound();
+    }
+
+    var existing = db.AppointmentServices
+        .Where(aps => aps.AppointmentId == id)
+        .ToList();
+
+    foreach (var aps in existing)
+    {
+        db.AppointmentServices.Remove(aps);
+    }
+
+    foreach (var serviceId in serviceIds)
+    {
+        db.AppointmentServices.Add(new AppointmentService
+        {
+            AppointmentId = id,
+            ServiceId = serviceId
+        });
+    }
+
+    db.SaveChanges();
+
+    return Results.NoContent();
+});
+
 app.MapGet("/api/stylists", (HillarysHairDbContext db) =>
 {
     return db.Stylists

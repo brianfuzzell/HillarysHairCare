@@ -132,7 +132,7 @@ Generated from: dev-docs/PRD.md
   - **Given** an active appointment detail is displayed, **When** Hillary clicks "Cancel Appointment," **Then** the appointment is marked cancelled and the cancel button disappears.
   - **Given** a cancelled appointment detail is displayed, **When** the page loads, **Then** no cancel button is shown.
 
-- [ ] **Step 11: Edit services on an appointment (Issue #5)**
+- [x] **Step 11: Edit services on an appointment (Issue #5)**
   The most complex mutation in the project. The edit replaces the full set of `AppointmentService` join records for an appointment: delete all existing ones, then insert the new set. This step also resolves the `AppointmentServiceDTO` design question (it only needs `ServiceDTO`, no back-reference to `Appointment`).
 
   Changes:
