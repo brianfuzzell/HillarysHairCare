@@ -6,6 +6,7 @@ import { CustomerList } from './components/CustomerList'
 import { AppointmentList } from './components/AppointmentList'
 import { AppointmentDetail } from './components/AppointmentDetail'
 import { AppointmentForm } from './components/AppointmentForm'
+import { EditServicesForm } from './components/EditServicesForm'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/appointments" element={<AppointmentList />} />
         <Route path="/appointments/new" element={<AppointmentForm />} />
         <Route path="/appointments/:id" element={<AppointmentDetail />} />
+        <Route path="/appointments/:id/edit-services" element={<EditServicesForm />} />
         <Route path="/customers" element={<CustomerList />} />
         <Route path="/stylists" element={<StylistList />} />
         <Route path="/services" element={<ServiceList />} />

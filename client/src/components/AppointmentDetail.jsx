@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Card, ListGroup, Badge, Button } from "react-bootstrap";
 import { getAppointment, cancelAppointment } from "../data/appointments";
 
@@ -24,6 +24,14 @@ export const AppointmentDetail = () => {
           ) : (
             <>
               <Badge bg="success">Active</Badge>
+              <Button
+                as={Link}
+                to={`/appointments/${id}/edit-services`}
+                variant="outline-primary"
+                size="sm"
+              >
+                Edit Services
+              </Button>
               <Button
                 variant="outline-danger"
                 size="sm"
