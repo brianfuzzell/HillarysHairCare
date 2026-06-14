@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Card, ListGroup, Badge } from "react-bootstrap";
-import { getAppointment } from "../data/appointments";
+import { Card, ListGroup, Badge, Button } from "react-bootstrap";
+import { getAppointment, cancelAppointment } from "../data/appointments";
 
 export const AppointmentDetail = () => {
   const { id } = useParams();
@@ -18,11 +18,26 @@ export const AppointmentDetail = () => {
     <Card style={{ maxWidth: 600, margin: "2rem auto" }}>
       <Card.Header className="d-flex justify-content-between align-items-center">
         <span>Appointment #{appointment.id}</span>
-        {appointment.isCancelled ? (
-          <Badge bg="danger">Cancelled</Badge>
-        ) : (
-          <Badge bg="success">Active</Badge>
-        )}
+        <div className="d-flex align-items-center gap-2">
+          {appointment.isCancelled ? (
+            <Badge bg="danger">Cancelled</Badge>
+          ) : (
+            <>
+              <Badge bg="success">Active</Badge>
+              <Button
+                variant="outline-danger"
+                size="sm"
+                onClick={() =>
+                  cancelAppointment(id).then(() =>
+                    getAppointment(id).then(setAppointment)
+                  )
+                }
+              >
+                Cancel Appointment
+              </Button>
+            </>
+          )}
+        </div>
       </Card.Header>
       <ListGroup variant="flush">
         <ListGroup.Item>
