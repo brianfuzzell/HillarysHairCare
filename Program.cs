@@ -198,6 +198,20 @@ app.MapPost("/api/appointments", (HillarysHairDbContext db, NewAppointmentDTO dt
     });
 });
 
+app.MapPut("/api/appointments/{id}/cancel", (HillarysHairDbContext db, int id) =>
+{
+    var appointment = db.Appointments.Find(id);
+    if (appointment == null)
+    {
+        return Results.NotFound();
+    }
+
+    appointment.IsCancelled = true;
+    db.SaveChanges();
+
+    return Results.NoContent();
+});
+
 app.MapGet("/api/stylists", (HillarysHairDbContext db) =>
 {
     return db.Stylists

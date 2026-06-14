@@ -10,3 +10,6 @@ export const createAppointment = (appointmentObj) =>
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(appointmentObj),
   }).then((r) => r.json());
+
+export const cancelAppointment = (id) =>
+  fetch(`/api/appointments/${id}/cancel`, { method: "PUT" });

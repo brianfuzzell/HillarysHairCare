@@ -108,7 +108,7 @@ Generated from: dev-docs/PRD.md
   - **Given** the appointments list is visible, **When** Hillary clicks on an appointment, **Then** she is taken to a detail view that shows the customer, stylist, date/time, all services, and total cost.
   - **Given** Hillary navigates to `/appointments/9999` (a non-existent id), **When** the API is called, **Then** a 404 is returned and the UI shows a "not found" message.
 
-- [ ] **Step 9: Create a new appointment (Issue #3)**
+- [x] **Step 9: Create a new appointment (Issue #3)**
   The most complex form so far: the UI needs dropdowns for customer and stylist (re-using the list endpoints from Steps 4 and 6), and the API must enforce the business rule that only active stylists can be booked.
 
   Changes:
