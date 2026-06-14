@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { NavBar } from './components/NavBar'
 import { ServiceList } from './components/ServiceList'
 import { StylistList } from './components/StylistList'
@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path="/" element={<p>Coming soon</p>} />
+        <Route path="/" element={<Navigate to="/appointments" replace />} />
         <Route path="/appointments" element={<AppointmentList />} />
         <Route path="/appointments/new" element={<AppointmentForm />} />
         <Route path="/appointments/:id" element={<AppointmentDetail />} />

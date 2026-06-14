@@ -11,7 +11,7 @@ export const AppointmentList = () => {
   }, []);
 
   return (
-    <div>
+    <div className="mt-4 px-3">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2>Appointments</h2>
         <Button as={Link} to="/appointments/new" variant="primary">

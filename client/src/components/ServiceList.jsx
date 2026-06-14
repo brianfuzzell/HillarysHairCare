@@ -10,10 +10,12 @@ export const ServiceList = () => {
   }, []);
 
   return (
-    <div>
+    <div className="mt-4 px-3">
       <h2>Services</h2>
-      <AddServiceForm setServices={setServices} />
-      <ul>
+      <div className="my-4">
+        <AddServiceForm setServices={setServices} />
+      </div>
+      <ul className="list-unstyled mt-4">
         {services.map((s) => (
           <li key={s.id}>
             {s.name} - {s.description} - ${s.price}

@@ -10,10 +10,12 @@ export const CustomerList = () => {
   }, []);
 
   return (
-    <div>
+    <div className="mt-4 px-3">
       <h2>Customers</h2>
-      <AddCustomerForm setCustomers={setCustomers} />
-      <ul>
+      <div className="my-4">
+        <AddCustomerForm setCustomers={setCustomers} />
+      </div>
+      <ul className="list-unstyled mt-4">
         {customers.map((c) => (
           <li key={c.id}>
             {c.name} &mdash; {c.email} &mdash; {c.phone}
