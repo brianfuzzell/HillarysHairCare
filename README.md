@@ -1,6 +1,10 @@
 # Full-stack project: :haircut: Hillary's Hair Care
+
 ## Instructions
 In this project you will create and implement a plan for building an application for Hillary, the owner of a hair salon. Hillary has hired us to create an application to manage appointments with her stylists at Hillary's Hair Care. As a reminder, learning how to break down projects into manageable units of work and modeling data with ERDs are essential tasks for a professional software developer, so do not skip this opportunity to practice these core professional disciplines.  
+
+### Agentic Development
+Nashville Software School provides Agentic Development training and supports using an AI development framework, [Tandem](https://github.com/Valerie-Freeman/tandem) paired with Claude Code, on select projects. This project was built using Tandem and Claude Code, but I own the decisions and code.
 
 ### Technical Requirements
 1. The app will be built with a ASP.NET Minimal APIs web api, using Postgresql and Entity Framework Core for data storage and access. 
